@@ -4,7 +4,6 @@ const users = require('./routes/users');
 const person = require('./routes/person');
 const bodyParser = require('body-parser');
 const mongoose = require('./config/database');
-var jwt = require('jsonwebtoken');
 const app = express();
 
 app.set('secret', 'lnqplApi');

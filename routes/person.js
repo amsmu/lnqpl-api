@@ -2,7 +2,9 @@ const express = require('express');
 const router = express.Router();
 const personController = require('../app/api/controllers/person');
 
-router.get('/', personController.getAll);
+const Utils = require('../utils/utils');
+
+router.get('/', Utils.validateUser, Utils.isAdmin, personController.getAll);
 router.post('/', personController.create);
 
 module.exports = router;
