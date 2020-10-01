@@ -1,6 +1,7 @@
 const express = require('express');
 const logger = require('morgan');
 const users = require('./routes/users');
+const person = require('./routes/person');
 const bodyParser = require('body-parser');
 const mongoose = require('./config/database');
 var jwt = require('jsonwebtoken');
@@ -16,6 +17,7 @@ app.get('/', function (req, res) {
 });
 
 app.use('/users', users);
+app.use('/person', person);
 
 app.use(function (req, res, next) {
   let err = new Error('Not Found');
