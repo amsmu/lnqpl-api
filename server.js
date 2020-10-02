@@ -4,13 +4,14 @@ const users = require('./routes/users');
 const person = require('./routes/person');
 const bodyParser = require('body-parser');
 const mongoose = require('./config/database');
+const cors = require('cors');
 const app = express();
-
+app.use(cors());
 app.set('secret', 'lnqplApi');
 
 mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error:'));
 app.use(logger('development'));
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json({ extended: false }));
 app.get('/', function (req, res) {
   res.json({ display_message: 'Welcome back home!' });
 });
