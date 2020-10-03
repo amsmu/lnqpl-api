@@ -5,7 +5,7 @@ module.exports = {
   validateUser: (req, res, next) => {
     jwt.verify(req.headers['x-access-token'], req.app.get('secret'), function (err, decoded) {
       if (err) {
-        res.status(500).json({ status: 'error', error: err.message, data: null });
+        res.status(500).json({ status: 'error', message: err.message, data: null });
       } else {
         req.body.userId = decoded.id;
         next();
