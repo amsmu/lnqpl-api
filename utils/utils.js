@@ -5,7 +5,7 @@ module.exports = {
   validateUser: (req, res, next) => {
     jwt.verify(req.headers['x-access-token'], req.app.get('secret'), function (err, decoded) {
       if (err) {
-        res.json({ status: 'error', message: err.message, data: null });
+        res.status(500).json({ status: 'error', error: err.message, data: null });
       } else {
         req.body.userId = decoded.id;
         next();
@@ -21,7 +21,7 @@ module.exports = {
         if (userInfo.is_admin_user) {
           next();
         } else {
-          res.json({ status: 'error', message: 'Incorrect email and password combination', data: null });
+          res.status(500).json({ status: 'error', message: "You're not an admin use", data: null });
         }
       }
     });

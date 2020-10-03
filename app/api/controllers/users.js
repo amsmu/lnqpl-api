@@ -22,7 +22,7 @@ module.exports = {
           const token = jwt.sign({ id: userInfo._id }, req.app.get('secret'), { expiresIn: '2h' });
           res.json({ status: 'success', message: 'No such user exists', data: { user: userInfo, token: token } });
         } else {
-          res.json({ status: 'error', message: 'Incorrect email and password combination', data: null });
+          res.status(500).json({ status: 'error', message: 'Incorrect email and password combination', data: null });
         }
       }
     });
